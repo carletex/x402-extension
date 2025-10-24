@@ -2,4 +2,4 @@ export const configOverrides = {
   targetNetworks: ["$$chains.baseSepolia$$"],
 };
 
-export const skipLocalChainInTargetNetworks = false;
+export const skipLocalChainInTargetNetworks = true;
