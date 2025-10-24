@@ -4,7 +4,7 @@ export const extraMenuLinksObjects = [
   {
     label: "Protected Route",
     href: "/payment/builder",
-    icon: <CreditCardIcon className="h-4 w-4" />,
+    icon: '$$<CreditCardIcon className="h-4 w-4" />$$',
   },
 ];
 
