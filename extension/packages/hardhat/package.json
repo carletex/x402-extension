@@ -1,0 +1,9 @@
+{
+    "scripts": {
+      "send402request": "hardhat run scripts/send402request.ts"
+    },
+    "dependencies": {
+      "viem": "^2.38.4",
+      "x402-fetch": "~0.6.6"
+    }
+  }

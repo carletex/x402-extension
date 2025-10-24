@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 export async function GET() {
-  return new Response("To get *this* response, you need to pay $0.01. Thanks :D");
+  return NextResponse.json({ message: "To get *this* response, you paid $0.01. Thanks :D" });
 }

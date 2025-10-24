@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "send402request": "yarn workspace @se-2/hardhat send402request"
+  }
+}

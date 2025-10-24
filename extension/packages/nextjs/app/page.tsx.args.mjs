@@ -54,11 +54,7 @@ const Home: NextPage = () => {
                 </div>
               </Link>
 
-              <Link
-                href="/api/payment/builder"
-                target="_blank"
-                className="flex flex-col bg-base-100 px-8 py-8 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-1"
-              >
+              <div className="flex flex-col bg-base-100 px-8 py-8 rounded-2xl">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-xl font-bold">API Route</h3>
                   <span className="badge badge-secondary">$0.01</span>
@@ -67,10 +63,23 @@ const Home: NextPage = () => {
                 <p className="text-sm text-base-content/70 mb-4">
                   Protected API endpoint - requires payment to access data
                 </p>
-                <div className="mt-auto flex items-center text-primary font-semibold">
-                  Try it now <ArrowTopRightOnSquareIcon className="h-4 w-4 ml-2 text-primary" />
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm font-semibold mb-2">1. Get a 402 payment required response:</p>
+                    <code className="text-xs bg-base-300 p-2 rounded block font-mono">
+                      curl http://localhost:3000/api/payment/builder
+                    </code>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold mb-2">2. Send a crafted 402 response:</p>
+                    <code className="text-xs bg-base-300 p-2 rounded block font-mono">yarn send402request</code>
+                    <p className="text-xs text-base-content/60 mt-1">
+                      (check{" "}
+                      <code className="bg-base-300 px-1 rounded">packages/hardhat/scripts/send402request.ts</code>)
+                    </p>
+                  </div>
                 </div>
-              </Link>
+              </div>
             </div>
 
             {/* Configuration Note */}
@@ -153,5 +162,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
-`;
+export default Home;`;
