@@ -1,32 +1,19 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import { Wallet } from "ethers";
-import password from "@inquirer/password";
-import { Account, privateKeyToAccount } from "viem/accounts";
+import { privateKeyToAccount } from "viem/accounts";
 import { wrapFetchWithPayment, decodeXPaymentResponse } from "x402-fetch";
+import { getDecryptedPK } from "./getDecryptedPK";
 
 const URL_TO_SEND_REQUEST = "http://localhost:3000/api/payment/builder";
 
 async function main() {
-  const encryptedKey = process.env.DEPLOYER_PRIVATE_KEY_ENCRYPTED;
+  const privateKey = await getDecryptedPK();
 
-  if (!encryptedKey) {
-    console.log("🚫️ You don't have a deployer account. Run `yarn generate` or `yarn account:import` first");
-    return;
-  }
+  if (!privateKey) return;
 
-  const pass = await password({ message: "Enter your password to decrypt the private key:" });
-  let wallet: Wallet;
-  let account: Account;
-  try {
-    wallet = (await Wallet.fromEncryptedJson(encryptedKey, pass)) as Wallet;
-    account = privateKeyToAccount(wallet.privateKey as `0x${string}`);
-  } catch {
-    console.log("❌ Failed to decrypt private key. Wrong password?");
-    return;
-  }
+  const account = privateKeyToAccount(privateKey as `0x${string}`);
 
-  console.log("\n 📡 Sending x402 transaction on baseSepolia from", wallet.address, "\n");
+  console.log("\n 📡 Sending x402 transaction on baseSepolia from", account.address, "\n");
 
   const fetchWithPayment = wrapFetchWithPayment(fetch, account);
 
